@@ -9,7 +9,6 @@
 
 <ion-content padding>
 
-  <ion-text></ion-text>
   <div *ngIf="memory">
     <ion-slides [options]="slideOpts">
 
@@ -28,8 +27,9 @@
       <ion-input [(ngModel)]="memory.title"></ion-input>
     </ion-item>
 
-    <ion-label position="stacked">Date</ion-label>
-    <ion-datetime [(ngModel)]="memory.date" displayFormat="MM/DD/YYYY"></ion-datetime>
+    <ion-item>
+      <ion-label position="stacked">Date</ion-label>
+      <ion-datetime [(ngModel)]="memory.date" displayFormat="MM/DD/YYYY"></ion-datetime>
     </ion-item>
 
     <!-- <ion-item>
@@ -41,14 +41,22 @@
       </ion-item> -->
 
     <ion-item>
-      <ion-textarea [(ngModel)]="memory.text" rows="6"></ion-textarea>
+      <ion-textarea [(ngModel)]="memory.text" rows="6" placeholder="What happened on that date?"></ion-textarea>
     </ion-item>
 
-    <!-- Delete the memory button -->
+    <!-- Update memory button -->
+    <!-- No validation, no image delete/add, no color -->
+    <ion-button expand="full" (click)="updateMemory()">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      Update Memory
+    </ion-button>
+
+    <!-- Delete memory button -->
     <ion-button expand="full" color="danger" (click)="removeMemory()">
       <ion-icon name="trash" slot="start"></ion-icon>
       Delete Memory
     </ion-button>
+
   </div>
 
 </ion-content>

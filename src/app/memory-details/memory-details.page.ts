@@ -55,9 +55,17 @@ export class MemoryDetailsPage implements OnInit {
       .then(() => {
         // Publish this events 'reload-memories'
         this.events.publish('reload-memories');
-      
+
         // Go back to the list page, and it will be reloaded (due to subscription event)
         this.router.navigateByUrl('/');
       });
+  }
+
+  updateMemory() {
+    this.memoryService.updateMemory(this.memory)
+      .then(() => {
+        this.events.publish('reload-memories-updateMemory');
+        this.router.navigateByUrl('/');
+      })
   }
 }

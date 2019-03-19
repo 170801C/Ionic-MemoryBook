@@ -103,15 +103,37 @@ export class MemoryService {
         // Remove all the images of the memory, deleting them from device storage
         for (let image of toDelete.images) {
           let task = this.file.removeFile(this.file.dataDirectory, image);
-          
+
           promises.push(task);
         }
 
         // Store the array of memories to keep back in storage, with the deleted memory gone  
-        promises.push(this.storage.set(MEMORY_KEY, toKeep));  
+        promises.push(this.storage.set(MEMORY_KEY, toKeep));
 
         return Promise.all(promises);
       })
   }
-}
 
+  updateMemory(memory) {
+    return this.storage.get(MEMORY_KEY)
+      .then(result => {
+
+        let newMemories = [];
+
+        for (let mem of result) {
+          // Cannot use mem == memory, not sure why. 
+          // Find the old memory, then push the new memory to the newMemories array 
+          if (mem.id == memory.id) {
+            newMemories.push(memory);
+          }
+          // Push the other memories to the newMemories array 
+          else {
+            newMemories.push(mem);
+          }
+        }
+
+        // Reassign newMemories as the value for the MEMORY_KEY key 
+        return this.storage.set(MEMORY_KEY, newMemories);
+      })
+  }
+}

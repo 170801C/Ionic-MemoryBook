@@ -24,6 +24,10 @@ export class ListPage implements OnInit {
       this.events.subscribe('reload-memories', () => {
         this.loadMemories();
       });
+
+      this.events.subscribe('reload-memories-updateMemory', () => {
+        this.loadMemories();
+      });
     } 
 
   ngOnInit() {
