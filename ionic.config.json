@@ -1,5 +1,8 @@
 {
   "name": "testIonic",
-  "integrations": {},
-  "type": "angular"
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "b6b31e62"
 }

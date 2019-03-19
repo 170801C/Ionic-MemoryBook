@@ -1,5 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <!-- Back button, does not appear, probably appears in mobile view only -->
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>
       Ionic Blank
     </ion-title>
@@ -7,6 +11,52 @@
 </ion-header>
 
 <ion-content padding>
+  <!-- Component variable -->
+  <p>{{ myVar }}</p>
+
+  <!-- Component function -->
+  <p>{{ foo() }}</p>
+
+  <!-- Click event -->
+  <ion-button color="secondary" expand="block" (click)="openPage()">Open page</ion-button>
+
+  <!-- Take input -->
+  <ion-input type="text" [(ngModel)]="newToDo" placeholder="Add new ToDo"></ion-input>
+  <ion-button (click)="addToDo()">
+    <ion-icon name="logo-ionic" slot="start"></ion-icon>
+    Add ToDo
+  </ion-button>
+
+  <!-- Take input in a list  -->
+  <ion-list *ngFor="let toDo of toDos">
+    <ion-item>
+      {{ toDo }}
+    </ion-item>
+  </ion-list>
+
+  <!-- Cordova camera plugin (works on Cordova, not Ionic) -->
+  <ion-button (click)="captureImage()">
+    <ion-icon name="logo-ionic" slot="start"></ion-icon>
+    Capture image
+  </ion-button>
+  <img [src]="myImage"/>
+
+  <br>
+
   The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be
+    your guide.</p>
+
+  <!-- This is how you link to another page using the Angular router, in the HTML file. The path is found in app-routing.module.ts -->
+  <a routerLink="/test">Go to Test page</a>
+
+  <p>Click on any item in the list to go to Test page:</p>
+  <ul *ngFor="let item of items">
+    <!-- $ required to be placed in front of event  -->
+    <li (click)='goToTestPage($event)'>{{item}}</li>
+  </ul>
+
+  <!-- <ul *ngFor="let item of items2">
+    <li ion-button round id="{{ item.id }}" (click)="goToAboutPage($event)">{{item}}}</li>
+  </ul> -->
 </ion-content>

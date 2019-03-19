@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Memory Book</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- Display the uploaded/captured image here -->
+  <!-- <img [src]="image" *ngIf="image"/> -->
+
+  <ion-card [style.background]="memory.color" *ngFor="let memory of memories" tappable (click)="openMemory(memory.id)">
+
+    <ion-img [src]="memory.images[0]"></ion-img>
+    
+    <ion-card-header>
+      <ion-card-title>{{ memory.title }}</ion-card-title>
+      <!-- Pipe and format the date -->
+      <ion-card-subtitle>{{ memory.date | date: 'medium' }}</ion-card-subtitle>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <p>{{ memory.text }}</p>
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- Camera button, add memory -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="selectSource()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
