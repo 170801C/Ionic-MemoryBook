@@ -25,6 +25,7 @@ export class ListPage implements OnInit {
         this.loadMemories();
       });
 
+      // To change: After updating a memory, it cannot be deleted and shown effectively. Error could be in events 
       this.events.subscribe('reload-memories-updateMemory', () => {
         this.loadMemories();
       });

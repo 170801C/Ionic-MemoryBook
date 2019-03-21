@@ -114,9 +114,11 @@ export class MemoryService {
       })
   }
 
+  // To change: images file paths are different for mem and memory. 
   updateMemory(memory) {
     return this.storage.get(MEMORY_KEY)
       .then(result => {
+        console.log("memory: ", memory);
 
         let newMemories = [];
 
@@ -124,6 +126,8 @@ export class MemoryService {
           // Cannot use mem == memory, not sure why. 
           // Find the old memory, then push the new memory to the newMemories array 
           if (mem.id == memory.id) {
+            console.log("mem: ", mem);
+
             newMemories.push(memory);
           }
           // Push the other memories to the newMemories array 

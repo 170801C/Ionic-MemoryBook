@@ -41,6 +41,7 @@ export class CapturedModalPage implements OnInit {
     let capturedImage = this.navParams.get('image');
     this.pushNewImage(capturedImage);
 
+    // Form values are synced, probably 2-way binded, check out Angular Reactive Forms
     this.memoryForm = this.formBuilder.group({
       // Validators.required requires title property to have a value 
       title: ['', Validators.required],

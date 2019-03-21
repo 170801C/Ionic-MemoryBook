@@ -64,7 +64,7 @@ export class MemoryDetailsPage implements OnInit {
   updateMemory() {
     this.memoryService.updateMemory(this.memory)
       .then(() => {
-        this.events.publish('reload-memories-updateMemory');
+        this.events.publish('reload-memories');
         this.router.navigateByUrl('/');
       })
   }
